@@ -1,169 +1,152 @@
 # Dockerized Python Web Application  
 ### From Single-Container Build to Multi-Container Production-Style Stack
 
-A hands-on Docker project that demonstrates the evolution of a Python Flask application from a basic single-container deployment to a more production-minded multi-container stack using Docker Compose, Redis, persistent storage, and container hardening techniques.
+A production-minded Docker project that demonstrates the evolution of a Python Flask application from a basic single-container deployment into a multi-container application stack using Docker Compose, Redis, persistent Docker volumes, optimized image builds, and CI-based image delivery.
 
-This project was built as part of my DevOps learning journey to develop practical, portfolio-ready Docker skills aligned with real-world engineering workflows.
+This project was built as part of my hands-on DevOps learning journey to strengthen practical skills in containerization, service orchestration, image optimization, runtime hardening, and Docker-based CI/CD workflows.
 
 ---
 
-## Project Summary
+## Project Overview
 
-This repository showcases a staged Docker learning and implementation path across five progressively improved versions of the same application.
+This repository showcases the progressive development of a Dockerized Python web application through multiple implementation stages, beginning with a simple Flask container and advancing into a more production-style application stack.
 
-The project begins with containerizing a simple Flask application and then evolves through:
+The final version includes:
 
-- development-friendly bind mounts
-- Docker-managed persistent storage
-- multi-container orchestration with Docker Compose
-- service-to-service communication with Redis
-- image optimization and runtime hardening using a multi-stage build, Gunicorn, and a non-root user
+- a **Python Flask web application**
+- a **Redis backend service**
+- **Docker Compose** orchestration
+- **persistent application storage** using Docker volumes
+- **multi-stage Docker image build**
+- **non-root container runtime**
+- **Gunicorn-based application startup**
+- **GitHub Actions automation** for Docker image validation, build, tagging, and publishing
 
-The goal of this project is not just to “run a container,” but to demonstrate practical Docker knowledge in a way that reflects how containerized applications mature in real DevOps environments.
+The goal of this project is not just to run a container locally, but to demonstrate how a Docker-based application can mature into a more realistic DevOps portfolio project.
 
 ---
 
 ## Why This Project Matters
 
-Docker is one of the most important tools in modern DevOps and cloud engineering. It enables teams to package applications consistently, improve development workflows, standardize deployments, and prepare workloads for platforms such as ECS, EKS, and other container-based systems.
+Docker is a foundational technology in modern DevOps and cloud engineering. This project demonstrates practical ability to:
 
-This project demonstrates my ability to:
+- build and run custom Docker images
+- containerize a Python application with a repeatable Dockerfile
+- work with bind mounts and named volumes
+- manage data persistence across container recreation
+- orchestrate multi-container applications with Docker Compose
+- connect application services using internal container networking
+- improve runtime quality with multi-stage builds and non-root execution
+- automate Docker image delivery with GitHub Actions
 
-- build and run Docker images from custom Dockerfiles
-- manage container lifecycle with Docker CLI
-- use bind mounts for development workflows
-- persist application data with Docker volumes
-- define and run multi-container applications with Docker Compose
-- connect services through container networking
-- improve image quality with multi-stage builds
-- run containers more securely using a non-root runtime user
-- transition from development-style containers toward production-minded container design
+For recruiters and hiring managers, this project reflects both technical growth and production-minded engineering habits.
 
 ---
 
 ## Tech Stack
 
-- Docker
-- Docker Compose
-- Python 3.12
-- Flask
-- Redis
-- Gunicorn
+- **Docker**
+- **Docker Compose**
+- **Python 3.12**
+- **Flask**
+- **Redis**
+- **Gunicorn**
+- **GitHub Actions**
+- **Docker Hub**
 
 ---
 
-## Final Architecture (v5)
+## Final Architecture
 
-The latest version of the project includes:
+The final implementation includes the following services and components:
 
-- **web** — Python Flask application served by Gunicorn
-- **redis** — Redis backend service
-- **named volume** — persistent application file storage
-- **Docker Compose** — multi-container orchestration
-- **multi-stage Dockerfile** — cleaner image build workflow
-- **non-root runtime user** — improved container security posture
+- **web** — Python Flask application served with Gunicorn
+- **redis** — Redis service used for application visit counting
+- **app_data volume** — Docker-managed named volume for persistent file storage
+- **Docker Compose** — multi-container orchestration and service networking
+- **GitHub Actions pipeline** — automated image build, validation, tagging, and publishing
 
 ---
 
 ## Project Evolution
 
 ### v1 — Basic Dockerized Flask Application
-Initial version of the project focused on Docker fundamentals.
+The project began with a simple Flask application containerized using a custom Dockerfile.
 
-**Key highlights**
-- containerized a simple Flask application
-- created a custom Dockerfile
-- built and ran the image with Docker CLI
-- practiced logs, inspect, port mapping, and container lifecycle operations
-
-**Skills demonstrated**
-- Docker images vs containers
-- Dockerfile basics
-- image building and tagging
-- port publishing
-- container inspection and logs
+**Highlights**
+- built a custom Docker image
+- ran the app as a single container
+- practiced Docker CLI lifecycle operations
+- exposed the application through published ports
 
 ---
 
 ### v2 — Bind-Mounted Development Workflow
-Added a development-oriented workflow using a bind mount.
+Introduced bind mounts to support a faster local development workflow.
 
-**Key highlights**
-- mounted the local project directory into the container
-- enabled host-container source sharing
-- improved iteration speed during local development
-
-**Skills demonstrated**
-- bind mounts
-- host/container file sharing
-- development workflow improvement
-- debugging with `docker logs`, `docker inspect`, and `docker exec`
+**Highlights**
+- mounted the local source code into the container
+- improved host-container file sharing during development
+- validated application behavior using Docker logs and inspection commands
 
 ---
 
 ### v3 — Persistent Storage with Docker Volumes
-Introduced persistent application data using a Docker-managed named volume.
+Added persistent storage using a Docker-managed named volume.
 
-**Key highlights**
-- added file write and read endpoints
-- mounted a named volume into the container
-- validated that application data survives container removal and recreation
-
-**Skills demonstrated**
-- named volumes
-- persistent data management
-- separation of container lifecycle and data lifecycle
+**Highlights**
+- implemented file write and read endpoints
+- mounted a named volume into the application container
+- validated that application data survives container recreation
 
 ---
 
-### v4 — Multi-Container Application with Docker Compose
-Expanded the application into a multi-service stack.
+### v4 — Multi-Container Stack with Docker Compose
+Expanded the application into a multi-service stack using Docker Compose.
 
-**Key highlights**
-- added a Redis backend service
-- defined the full stack in `docker-compose.yml`
+**Highlights**
+- added Redis as a backend service
+- defined the application stack in `docker-compose.yml`
 - connected services using Compose networking
 - retained persistent file storage with a named volume
-
-**Skills demonstrated**
-- Docker Compose
-- multi-container orchestration
-- service-name networking
-- environment-based configuration
-- centralized stack definition
 
 ---
 
 ### v5 — Production-Minded Optimization and Hardening
-Improved the application image and runtime approach for a more production-style setup.
+Upgraded the application image and runtime behavior to better reflect production-style container practices.
 
-**Key highlights**
-- replaced Flask development server with Gunicorn
+**Highlights**
 - introduced a multi-stage Dockerfile
-- ran the container as a non-root user
-- removed development-style bind mounts from runtime
+- switched from Flask development server to Gunicorn
+- ran the application as a non-root user
+- removed development-oriented bind mounts from runtime
 - added restart behavior in Compose
-- preserved Redis integration and persistent storage
 
-**Skills demonstrated**
-- multi-stage builds
-- non-root container execution
-- production-style runtime server
-- cleaner runtime image design
-- container hardening fundamentals
+---
+
+### Final CI/CD Enhancement
+Integrated GitHub Actions to automate Docker image delivery.
+
+**Highlights**
+- validated Docker build configuration in CI
+- built Docker images automatically on pull requests
+- pushed tagged images to Docker Hub on `main`
+- used Buildx cache optimization for faster rebuilds
+- enabled supply-chain metadata generation with SBOM and provenance
 
 ---
 
 ## Key Features
 
-- Custom Dockerfile-based application build
-- Docker image versioning across multiple stages of project maturity
-- Persistent application file storage using Docker volumes
+- Custom Dockerfile-based image build
+- Multi-container application with Docker Compose
+- Persistent application storage using named volumes
 - Redis-backed visit counter
-- Multi-container orchestration with Docker Compose
 - Production-minded Gunicorn runtime
-- Non-root application container
-- Health and runtime test endpoints
+- Non-root container execution
+- Multi-stage image optimization
+- GitHub Actions Docker CI/CD workflow
+- Docker Hub image publishing
 
 ---
 
@@ -171,6 +154,9 @@ Improved the application image and runtime approach for a more production-style 
 
 ```text
 dockerized-python-web-application/
+├── .github/
+│   └── workflows/
+│       └── docker-ci.yml
 ├── app.py
 ├── requirements.txt
 ├── Dockerfile
