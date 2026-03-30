@@ -132,7 +132,6 @@ Integrated GitHub Actions to automate Docker image delivery.
 - built Docker images automatically on pull requests
 - pushed tagged images to Docker Hub on `main`
 - used Buildx cache optimization for faster rebuilds
-- enabled supply-chain metadata generation with SBOM and provenance
 
 ---
 
@@ -147,6 +146,19 @@ Integrated GitHub Actions to automate Docker image delivery.
 - Multi-stage image optimization
 - GitHub Actions Docker CI/CD workflow
 - Docker Hub image publishing
+
+---
+
+## CI/CD Automation
+
+This project includes a GitHub Actions workflow that:
+
+- builds the Docker image on every pull request
+- validates Docker build configuration in CI
+- generates automated image tags and labels
+- pushes tagged images to Docker Hub on `main`
+- uses GitHub Actions cache to speed up rebuilds
+- supports future extensions such as SBOM, provenance, and policy checks
 
 ---
 
